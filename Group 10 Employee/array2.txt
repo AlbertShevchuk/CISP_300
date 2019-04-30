@@ -1,0 +1,101 @@
+Module Module1
+	
+	sub main()
+
+		Dim pplNames(10) as string 
+		Dim hWage(10) as decimal
+		Dim hWorked(10) as decimal 
+		Dim department(10) as integer 
+		Dim eGrossPay(10) as decimal 
+		
+		populateArray(pplNames,hWage,hWorked,department,eGrossPay)
+		grossDepartment(department,eGrossPay)
+		displayEmployeeInfo(pplNames,hWage,hWorked,department,eGrossPay)
+		Console.WriteLine( )
+		Console.WriteLine("Press any key to dip out")
+        Console.ReadKey()
+		
+	end sub 
+	
+	sub populateArray(byref pplNames() as string,byref hWage() as decimal,byref hWorked() as decimal,byref department() as integer,byref eGrossPay() as decimal)
+		Dim proceed as boolean 
+		Dim name as string 
+		'1st loop to populate
+		For employee=1 To 10
+			console.writeline()
+			console.writeline("Whats guud employee number: " & employee)
+			do '2nd loop to validate
+				proceed=true
+				console.writeline("Whats ur last name sucka juice?: ")
+				name=console.readline() '3rd loop runs threw employees for a name match 
+				checkDuplicate(pplNames,name,proceed)
+			loop while not (proceed)
+			pplNames(employee)=name
+			console.writeline("Alright " & pplNames(employee) & ", what department do you work in? ")
+			department(employee)=console.readline() 
+			console.writeline("Aha, now how many hours have you worked? ")
+			hWorked(employee)=console.readline() 
+			console.writeline("kk boss, how much do you earn per hour? ")
+			hWage(employee)=console.readline() 
+			eGrossPay(employee)=hWage(employee)*hWorked(employee)
+        Next
+	end sub 
+	
+	sub checkDuplicate(byref pplNames() as string,byval name as string,byref proceed as boolean) 
+		for validEmployee = 1 To 10 '3rd loop
+			if pplNames(validEmployee)=name then
+				proceed=false
+				console.writeline()
+				console.writeline("Ai Yo! You cant put down (" & name & ")")
+				console.writeline("Cuz some other douche has the same name you entered")							
+				console.writeline("Change some stuff up my nug jug!!!")	
+			end if
+		next
+	end sub
+	
+	sub grossDepartment(byref department() as integer,byref eGrossPay() as decimal)
+		dim Depp1Gross as decimal
+		dim Depp2Gross as decimal
+		dim Depp3Gross as decimal
+		
+		for employee=1 to 10
+			Select Case department(employee)
+				Case 1
+					Depp1Gross+=eGrossPay(employee)			
+				Case 2
+					Depp2Gross+=eGrossPay(employee)	
+				Case 3
+					Depp3Gross+=eGrossPay(employee)	
+			End select 	
+		next
+		
+		console.writeline()
+		console.writeline("Department One Gross Payroll is: " & Depp1Gross)
+		console.writeline("Department Two Gross Payroll is: " & Depp2Gross)
+		console.writeline("Department Three Gross Payroll is: " & Depp3Gross)
+		grossAll(Depp1Gross,Depp2Gross,Depp3Gross)
+		
+	end sub		
+	
+	sub grossAll(byval Depp1Gross as decimal,byval Depp2Gross as decimal,byval Depp3Gross as decimal) 
+		dim DeppAllGross as decimal 
+		
+		DeppAllGross=Depp1Gross+Depp2Gross+Depp3Gross	
+		console.writeline("Total Company Gross Payroll: " & DeppAllGross)
+	end sub 
+	
+	sub displayEmployeeInfo(byref pplNames() as string,byref hWage() as decimal,byref hWorked() as decimal,byref department() as integer,byref eGrossPay() as decimal)
+		for employee=1 to 10
+			console.writeline()
+			console.writeline(pplNames(employee) & "'s Employee Info: " )
+			console.writeline("Department Number: " & department(employee))
+			console.writeline("Hourly Wage: " & hWage(employee))
+			console.writeline("Hours Worked: " & hWorked(employee))
+			console.writeline("Gross Pay: " & eGrossPay(employee))
+		next	
+	end sub
+end module 
+
+		
+	
+	

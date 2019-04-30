@@ -1,0 +1,85 @@
+Module Module1
+
+    Sub Main()
+		dim eValue as integer
+		dim rValue as integer
+		dim answer as integer
+		
+		console.writeline("Lets Play Roll the Dice!" )
+		console.writeline("Except i'll be the Dice, lol" )
+		console.writeline("Im gonna roll 3 times to try to guess ur number" )
+		
+		
+			eValue=guess(eValue)
+			rValue=roll(rValue)
+			answer=analize(rValue,eValue)
+			if answer=true then
+				Console.WriteLine("Congratulations!!! You Won!")
+			else
+				Console.WriteLine("Unfortunatly, you LOSE!")
+			end if
+			Console.WriteLine("Press any key to Exit")
+			Console.ReadKey()
+			
+    End Sub
+	
+	function guess(eValue as integer) as integer 
+		dim valid as boolean 
+		
+		do
+			Console.WriteLine("Enter a number between 2 and 12 ")
+			eValue=console.readline( )
+			valid=validate(eValue)
+		loop until (valid=true)
+		
+		return (eValue) 
+
+	end function
+		
+	function validate(ByVal eValue as integer) as integer 
+		dim valid as integer
+		
+		if	(eValue>=2 and eValue<=12) then
+			valid=true
+		else
+			valid=false
+		end if
+		
+		return (valid) 
+
+	end function
+	
+	function roll(rValue as integer) as integer 
+		dim value1 as integer
+		dim value2 as integer
+		Dim high As Integer = 12
+		Dim low As Integer = 0
+		Randomize()				   
+		do
+			value1=Int((high - low + 1) * Rnd()) + low
+			value2=Int((high - low + 1) * Rnd()) + low
+			rValue=value1+value2
+		loop until (rValue>=2 and rValue<=12)
+		Console.WriteLine("Dice Roll Value is: " &rValue)
+		return (rValue) 
+
+	end function
+	
+	function analize(ByVal rValue as integer, ByVal eValue as integer) as integer
+		dim tRoll as integer
+		dim answer as boolean 
+		
+		do
+			rValue=roll(rValue)
+			if rValue=eValue then
+				answer=true
+			else
+				answer=false
+				tRoll=tRoll+1
+			end if
+		loop until (answer=true or tRoll=2)
+		return (answer) 
+		
+	end function
+	
+End Module

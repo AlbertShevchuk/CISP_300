@@ -1,0 +1,171 @@
+Module Module1
+	dim healthPremium as integer 
+	dim autoPremium as integer 
+	REM global variables 
+	
+	sub main()
+	
+		Dim procedure as integer
+		dim proceed as boolean
+		REM local variables 
+		do
+			REM loop to keep case 1 and 2 cycling, 3rd case to quit
+			procedure=menu()
+		REM main calls menu, and is returned with selection  
+			Select Case procedure
+				REM case to select different calls 
+					Case 1
+						healthInsur()
+						REM case 1 calls health policy 					
+					Case 2
+						autoInsur()
+						REM case 2 calls auto insurance policy 
+					Case 3
+						display()
+						REM case 3 calls display 
+						
+			End select 
+			if (procedure=1 or procedure=2) then
+				proceed=true
+			else
+				proceed=false
+			end if
+		loop while proceed
+		console.writeline("Press any key to continue")
+		console.readkey()
+	end sub 
+	
+	function menu() as integer
+		Dim procedure as integer
+		REM local variable
+		REM function menu gives the user 3 options to decide from 
+		do
+			REM loop for validation 
+			console.writeline()
+			console.writeline("Please Select the following")
+			console.writeline()
+			console.writeline("1)	Health Policy")
+			console.writeline("2)	Auto Insurance Policy")
+			console.writeline("3)	Quit")
+			console.writeline()
+			procedure=console.readline()
+			
+			if (procedure<1 or procedure>3) then 
+				console.writeline()
+				console.writeline("Ooops!! You have selected option " & procedure & " that doesn't exist" )
+				REM punctuation for the loop 
+			End if
+				
+		loop while not (procedure>=1 and procedure<=3)
+		return(procedure)
+		REM 1 2 or 3 is returned back to main
+	end function 
+	
+	sub healthInsur()
+		dim smoker as string
+		REM local variable
+		REM helthInshur ask if user is a smoker and sets the price 
+		console.writeline("Are you a Smoker?")
+		do
+			REM loop for validation 
+			console.writeline("Use a single key (Y,y for yes and N,n for no)")
+			smoker=console.readline()
+			if not (smoker="Y" or smoker="y" or smoker="N" or smoker="n")  then
+				console.writeline("Ooops!! You have selected option " & smoker & " that doesn't exist" )
+			end if
+			REM punctuation for loop
+		loop while not (smoker="Y" or smoker="y" or smoker="N" or smoker="n") 
+		
+		if (smoker="Y" or smoker="y") then
+			healthPremium=250
+		end if
+		if (smoker="N" or smoker="n") then
+			healthPremium=190
+		end if
+		REM price selection for smoker or not, total saved in global variable healthPremium
+	end sub
+	
+	sub autoInsur()
+		dim tickets as integer 
+		dim pTotal as integer
+		REM local variables 
+		REM sub autoInsur asks user how many tickets in 3 years 
+			do
+				REM loop for validation 
+				console.writeline()
+				console.writeline("How many traffic tickets have you received in the last three years?")
+				tickets=console.readline()
+				if tickets<0 then 
+					console.writeline()
+					console.writeline("Oops!! You have entered " &tickets & " (Can't be negative)" )
+				end if
+				REM punctuation for loop
+			loop while tickets<0 
+			pTotal=mTicket(tickets) 
+			REM autoInsur calls mTicket 
+			xFee(pTotal,tickets)	
+			REM autoInsur calls xFee and passes the number of tickets and their total cost 
+	end sub
+	
+	function mTicket (byval tickets as integer) as integer
+		dim pTotal as integer 
+		dim price as integer 
+		REM local variables 
+		REM mTicket uses a loop inside of a loop to calculate the total for each ticket/s
+			if tickets>0 then 
+			
+				console.writeline()
+				console.writeline("Please enter the amount paid for each traffic ticket" )
+				for count=1 to tickets
+					REM counter to separately add all the ticket prices together
+					do
+					REM loop makes sure's user don't enter 0 or negative numbers 
+						console.writeline()
+						console.writeline("Enter the amount paid for traffic ticket number " &count )
+						price=console.readline()
+						if price<=0 then
+							console.writeline("Oops!! You cant have " & price & " as the amount paid for a traffic ticket")
+						end if
+						REM punctuation for the loop
+					loop while price<=0
+					pTotal=pTotal+price
+					REM every count, price adds to itself to generate total value
+				next
+			end if
+		return(pTotal)
+		REM the total is returned to autoInsur
+	end function
+	
+	sub xFee (byval pTotal as integer,byval tickets as integer)
+		REM xFee desides the premium based on number of tickets and stores it in global variable autoPremium
+		if tickets=0 then
+			autoPremium=95
+		end if
+		
+		if (tickets=1 or tickets=2) then
+			autoPremium=140 
+		end if
+		
+		if tickets>=3 then
+			autoPremium=175 
+		end if 
+		
+		cumulative(pTotal)
+			REM xFee calls cumulative and passes down the total ticket cost 
+	end sub	
+	
+	sub cumulative (byval pTotal as integer)
+		REM cumulative adds the total ticket cost to global variable autoPremium as autoPremium
+		autoPremium=autoPremium+pTotal
+	end sub
+	
+	sub display()
+		REM display shows both the global variables for Health policy and auto insurance policy 
+		console.writeline()
+		console.writeline("The total for your Health Policy is: " & healthPremium)
+		console.writeline("The total for your Auto Insurance Policy is: " & autoPremium)
+	end sub
+end module 
+		
+	
+	

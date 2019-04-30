@@ -1,0 +1,29 @@
+Module Module1
+	sub main()
+		Dim number as integer
+			
+		do
+			console.writeline("Enter a number between or including 5 and 10")
+			number=console.readline()
+		loop until (number>=5 and number<=10)
+		recursion(number)
+		console.writeline(number)
+		console.writeline("Hit any key to dip out")
+		console.readkey()
+	end sub
+	
+	sub recursion (Byval number as integer)
+		console.writeline(number)		
+		number=number-1
+		if number>0 then
+			recursion(number)
+		end if
+		if number=0 then
+			console.writeline(number)
+		end if
+		console.writeline(number)
+	end sub		
+end module 
+		
+	
+	

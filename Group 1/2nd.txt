@@ -1,0 +1,18 @@
+Module Module1
+	Sub Main()
+		Dim P as Decimal 
+		Dim R as Decimal 
+		Dim n as Decimal 
+		Dim A as Decimal 
+		
+		Console.WriteLine("Enter Principal")
+		P = Console.ReadLine()
+		Console.WriteLine("Enter Annual Rate of Interest as a Decimal")
+		R = Console.ReadLine()
+		Console.WriteLine("Enter Number of Years you Leave it on Deposit")
+		n = Console.ReadLine()
+		A = (1+R)^n*P
+		Console.WriteLine("How much money you've accumulated after hella years: " & A)
+		REM Could not get n to show up :'(
+	End Sub
+End Module 

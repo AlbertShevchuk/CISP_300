@@ -1,0 +1,57 @@
+Module Module1
+
+    Sub Main()
+		dim hightFeet as integer
+		dim weightPounds as integer
+		dim Millimeter as decimal
+		dim proceed as boolean 
+		
+		console.writeline("This is a conversion program that changes feet to centimeters and then to millimeters" )
+		do
+			console.writeline("Enter the weight in Pounds" )
+			weightPounds=console.readline()
+			console.writeline("Enter the hight in Feet" )
+			hightFeet=console.readline()
+			proceed=validate(hightFeet,weightPounds)
+		loop until proceed=true 
+		Millimeter=convertCentimeters(hightFeet)
+		console.writeline("The height is " &Millimeter & " Millimeters")
+		Console.WriteLine("Press any key to Exit")
+		Console.ReadKey()
+	end sub
+	
+	function validate(ByVal hightFeet as integer,ByVal weightPounds as integer) as integer 
+		dim ratio as decimal 
+		dim proceed as boolean 
+		
+		ratio=weightPounds/hightFeet
+		if	(hightFeet>2 and hightFeet<10 and weightPounds>10 and weightPounds<500 and ratio<50) then
+			proceed=true
+		else
+			proceed=false
+			console.writeline("The height must be more than 2 feet but less than 10 feet" )
+			console.writeline("The weight must be more than 10 pounds but less than 500 pounds" )
+			console.writeline("The ratio of weight to height must be less than 50. For example someone who is 6 feet tall has to be less than 300 pounds." )
+			console.writeline()
+		end if
+		
+		return (proceed) 
+
+	end function
+	
+	function convertCentimeters(Byval hightFeet as integer) as decimal  
+		dim Millimeter as decimal
+			convertCentimeters=hightFeet*30.48
+			Millimeter=convertMillimeter(convertCentimeters)
+		return (Millimeter) 
+
+	end function
+	
+	function convertMillimeter(ByVal convertCentimeters as decimal) as decimal
+		dim Millimeter as decimal 
+		
+		Millimeter=convertCentimeters*10
+		return (Millimeter) 
+	end function
+	
+End Module

@@ -1,0 +1,55 @@
+﻿Module Module1
+	Sub Main()
+		
+		Dim day as string
+		Dim number As Integer
+		Dim total As Decimal
+		Dim price As Integer
+		Dim high As Integer = 300
+		Dim low As Integer = 170
+		Dim rand As Integer
+		Randomize()				    
+		rand = Int((high - low + 1) * Rnd()) + low
+
+		console.writeline("Enter the Day of the week (in small caps) " )
+		day=console.readline()
+		console.writeline("Enter the number of subjects" )
+		number=Console.ReadLine()
+				
+		Select Case number
+			Case 1
+				price=100
+			Case 2
+				price=130
+			Case 3
+				price=150
+			Case 4
+				price=165
+			Case > 4
+				price=rand
+		End Select
+									
+		if not(day="saturday") and not (day="sunday") then
+			if not (day="monday") or not (number=3) then
+				total=price
+			else
+				total=price*.9
+				console.writeline("YOU GET A 10% DISCOUNT")
+			end if 
+		else
+			total=price*1.2
+			console.writeline("20% WEEKEND FEE")
+		end if
+			
+		if day="tuesday" then
+			if number=4 then
+				total=price*.85
+				console.writeline("YOU GET A 15% DISCOUNT")
+			else
+				total=price
+			end if
+		end if	
+				
+		console.writeline("Total Price in US Dollars: " &total)
+	end Sub
+end Module 

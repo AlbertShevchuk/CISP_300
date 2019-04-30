@@ -1,0 +1,62 @@
+﻿Module Module1
+	Sub Main()
+		
+		Dim day as string
+		Dim number As Integer
+		Dim total As Decimal
+		Dim price As Integer
+		Dim high As Integer = 10
+		Dim low As Integer = 1
+		Dim rand As Integer
+		Randomize()				    
+		rand = Int((high - low + 1) * Rnd()) + low
+
+		console.writeline("Enter the Day of the week (in small caps) " )
+		day=console.readline()
+		console.writeline("Enter the number of subjects" )
+		number=Console.ReadLine()
+		
+		
+			if number=1 then
+				price=100
+			end if
+		
+			if number=2 then
+				price=130
+			end if
+		
+			if number=3 then
+				price=150
+			end if
+		
+			if number=4 then
+				price=165
+			end if
+		
+			if number>4 then
+				price=rand*20
+			end if
+		
+			if day="monday" or day="tuesday" or day="wednesday" or day="thursday" or day="friday" then
+				total=price
+				console.writeline("Normal Rate")
+			end if
+			
+			if day="saturday" or day="sunday" then
+				total=price*1.2
+				console.writeline("20% WEEKEND FEE")
+			end if
+			
+			if day="monday" and number=3 then
+				total=price*.9
+				console.writeline("YOU GET A 10% DISCOUNT")
+			end if 
+			
+			if day="tuesday" and number=4 then
+				total=price*.85
+				console.writeline("YOU GET A 15% DISCOUNT")
+			end if	
+		
+		console.writeline("Total Price in US Dollars: " &total)
+	end Sub
+end Module 

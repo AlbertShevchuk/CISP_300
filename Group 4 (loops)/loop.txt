@@ -1,0 +1,32 @@
+Module Module1
+	sub main()
+		Dim value as decimal
+		Dim Valid As Boolean
+		
+		console.writeline("Welcome to Secondhand Rose Resale Shop")
+		do
+			Valid = true
+			console.writeline("What is the price? ")
+			value=console.readline()	
+			if (value<5.99 or value>=20) then
+				console.writeline("Discount Only Applies for Items Starting from 6$, but Less Then 20$")
+				Valid = false
+			end if
+		loop while not Valid
+		
+		for count1=1 to 7
+			if value>5 then
+				if count1=7 then
+					value=1.1111*value
+				end if
+				value=.9*value
+			end if
+			console.writeline("On day: "&count1)
+			console.writeline("Discount Price in US Dollars: "&value)
+		next 		
+			
+	end sub
+end module 
+		
+	
+	

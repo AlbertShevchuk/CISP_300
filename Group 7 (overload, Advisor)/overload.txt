@@ -1,0 +1,49 @@
+Module Module1
+    Sub Main()
+		dim selection as integer
+				
+			console.writeline("Wellcome to Oliver Wendell Holmes College " )
+			selection=menu()
+			choice(selection)
+			Console.WriteLine("Press any key to Exit")
+			Console.ReadKey()
+	end sub
+	
+	function menu() as integer
+		dim selection as integer 
+		
+			console.writeline("Select your major " )
+			console.writeline("1) Business " )
+			console.writeline("2) Liberal Arts " )
+			selection=Console.ReadLine()
+			
+		return(selection)
+	end function 
+	
+	sub choice(Byval selection as integer) 
+		dim GPA as decimal
+		
+			console.writeline("What is your Grade Point Average? " )
+			GPA=Console.ReadLine()
+			
+			Select Case selection
+				Case=2
+					Advisor(selection)
+				Case=1
+					Advisor(GPA) 
+			End Select
+	end sub
+	
+	sub Advisor(ByVal GPA as decimal) 
+		If GPA>2.9 then 
+			console.writeline("Your Advisor is Donna Trump" )
+		else 
+			console.writeline("Your Advisor is Edgar Skilling" )
+		end if 
+	end sub
+	
+	sub Advisor(ByVal selection as integer) 
+		console.writeline("Your Advisor is Andrea Worhol" )
+	end sub
+	
+End Module

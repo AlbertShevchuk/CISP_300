@@ -1,0 +1,22 @@
+do r
+
+if S is true then
+	do T
+	if U is true then
+		if W is true then
+			do Y
+		elce 
+			do x
+		end if
+	elce
+		do Y
+	end if
+elce 
+	do V
+	if W is true then
+		do Y
+	elce
+		do X
+	end if
+end if 
+	

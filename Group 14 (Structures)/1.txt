@@ -1,0 +1,52 @@
+Module Module1
+	Structure sInfo 
+		dim studentID as integer
+		dim studentName as string
+		dim noOfUnits as decimal
+	end structure 
+	
+	sub main()
+		Dim s(3) as sInfo
+		populateArray(s)
+		displayContents(s)
+	end sub 
+
+	sub populateArray(byref s() as sInfo)
+		
+		
+		for student=1 to 3
+			Console.Writeline()
+			Console.Writeline("What's Up Student " & student)
+			Console.Writeline("What's your Full Name?")	
+			s(student).studentName=Console.ReadLine()
+			Console.Writeline("What's your Student ID? (Without the 'W')")	
+			s(student).studentID=Console.ReadLine()
+			Console.Writeline("How many units are you taking?")	
+			s(student).noOfUnits=Console.ReadLine()
+		next	
+	end sub
+	
+	sub displayContents(byref s() as sInfo)
+			dim fee as decimal 
+			
+		for student=1 to 3
+			Console.Writeline()
+			Console.Writeline("Student: " & s(student).studentName)
+			Console.Writeline("With ID number: " & s(student).studentID)	
+			Console.Writeline("Witch is Taking (" & s(student).noOfUnits & ") Units" )	
+			fee=calcualteFee(student,s)
+			Console.Writeline("The total fee for your enrolment is: " & fee)
+		next
+	end sub
+	
+	function calcualteFee(byval student as integer,byref s() as sInfo) as decimal
+		dim fee as decimal 
+				
+		fee=s(student).noOfUnits*12
+		return(fee)
+	end function
+end module 
+
+		
+	
+	

@@ -1,0 +1,78 @@
+Module Module1
+
+    Sub Main()
+		dim value1 as integer
+		dim value2 as integer
+		dim Stotal as integer
+		dim dTotal as integer 
+		dim fTotal as integer 
+		dim mTotal as integer 
+		
+		console.writeline("Let's have some fun comrade?" )
+		do
+			console.writeline("Enter the first numeric (integer) comrade!" )
+			value1=console.readline()
+			console.writeline("Enter the second numeric (integer) comrade!" )
+			value2=console.readline()
+			if value1<0	or value2<0 then
+				console.writeline("comrade! YOU MUST ONLY HAVE POSITIVE NUMBERS" )
+			end if
+		loop until (value1>=0 and value2>=0)
+			sTotal=sum(value1,value2)
+			dTotal=difference(value1,value2)
+			mTotal=multiply(value1,value2)
+			fTotal=factorial(value1,value2)
+			display(sTotal,dTotal,fTotal,mTotal,value1,value2)
+			Console.WriteLine("Press any key to fire the missile ")
+			Console.ReadKey()
+				
+    End Sub
+	
+	function sum(ByVal value1 as integer, ByVal value2 as integer) as integer 
+		dim sTotal as integer
+		
+		sTotal=value1+value2
+		return (sTotal) 
+
+	end function
+		
+	function difference(ByVal value1 as integer, ByVal value2 as integer) as integer 
+		dim dTotal as integer
+		
+		dTotal=value1-value2
+		return (dTotal) 
+
+	end function
+	
+	function multiply(ByVal value1 as integer, ByVal value2 as integer) as integer 
+		dim mTotal as integer
+		
+		mTotal=value1*value2
+		return (mTotal) 
+
+	end function
+	
+	function factorial(ByVal value1 as integer, ByVal value2 as integer) as integer 
+	
+		dim fTotal as integer
+		
+		factorial=1
+		
+		for count=1 to value1
+			factorial=factorial*count
+		next
+		
+		fTotal=factorial
+		return (fTotal)
+		
+	end function
+	
+	Sub display(ByVal sTotal as integer, ByVal dTotal as integer, ByVal fTotal as integer, ByVal mTotal as integer, ByVal value1 as integer, ByVal value2 as integer)
+	
+		console.writeline("The result for the multiplicity of " & value1 & " and " & value2 & " is: " & mTotal)
+		console.writeline("The result for the sum of " & value1 & " and " & value2 & " is: " & sTotal)
+		console.writeline("The result for the difference of " & value1 & " and " & value2 & " is: " & dTotal)
+		console.writeline("The result for the factorial value of " & value1 & " is: " & fTotal)
+	end sub
+	
+End Module

@@ -1,0 +1,30 @@
+if A is true then
+	if C is true
+		do D
+	elce
+		do B
+	end if
+elce 
+	do E
+end if
+
+if F is true then
+	if y is true then
+		do H
+    	else
+		do G
+	endif
+elce	
+	if y is true then
+		do k
+	end if
+end if
+	
+if I is true then
+	do J
+else
+	do K
+	do L
+	do M
+endif
+do N

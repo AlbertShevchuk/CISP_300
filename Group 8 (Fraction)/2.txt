@@ -1,0 +1,66 @@
+Module Module1
+	sub main()
+		Dim numerator1 as integer
+		Dim denominator1 as integer
+		Dim numerator2 as integer
+		Dim denominator2 as integer
+		
+		
+		console.writeline("Lets add some fractions sucka juice")
+		input(numerator1,numerator2,denominator1,denominator2)
+		sum(numerator1,numerator2,denominator1,denominator2)
+		Console.WriteLine("Press any key to Exit")
+		Console.ReadKey()
+	end sub
+	
+	sub input (ByRef numerator1 as integer,ByRef denominator1 as integer,ByRef numerator2 as integer, ByRef denominator2 as integer)
+				
+		console.writeline("Enter the Numerator of the First Value")
+		numerator1=console.readline()
+		console.writeline("Enter the Denominator of the First Value")
+		denominator1=console.readline()
+		console.writeline("Enter the Numerator of the Second Value")
+		numerator2=console.readline()
+		console.writeline("Enter the Denominator of the Second Value")
+		denominator2=console.readline()
+	end sub
+	
+	sub sum (ByRef numerator1 as integer,ByRef denominator1 as integer,ByRef numerator2 as integer, ByRef denominator2 as integer) 
+		dim sum as integer
+		dim fDecimal as decimal 
+			sum=LCM(denominator1,denominator2)
+			fDecimal=decimalFormat(sum,denominator1,denominator2,numerator1,numerator2)
+			console.writeline("The result in decimal format is " & fDecimal)
+	End sub
+	
+	function LCM (ByVal denominator1 as integer,ByVal denominator2 as integer) as integer
+		Dim tmp As integer, product As integer
+			product = denominator1 * denominator2
+
+		Do
+			If denominator1 < denominator2 Then
+				tmp = denominator1
+				denominator1 = denominator2
+				denominator2 = tmp
+			End If
+        
+			denominator1 = denominator1 Mod denominator2
+		Loop While denominator1
+
+		LCM = product \ denominator2
+		
+		return(LCM)
+	End Function
+	
+	function decimalFormat (ByRef sum as integer,ByRef numerator1 as integer,ByRef denominator1 as integer,ByRef numerator2 as integer, ByRef denominator2 as integer) as decimal
+		dim Numerator as integer
+		dim fDecimal as decimal
+			Numerator=(numerator1*denominator2)+(numerator2*denominator1)
+			fDecimal=Numerator/sum 
+		
+		return(fDecimal)
+	end function 		
+end module 
+		
+	
+	

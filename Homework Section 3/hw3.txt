@@ -1,0 +1,124 @@
+Module Module1
+
+	sub main()
+		Dim grid(2,2) as integer
+		dim valid as string = "c"
+		
+			do
+				inputUser(grid)
+				valid=validate(grid, valid)
+				inputComputer(grid) 
+				valid=validate(grid, valid)
+				
+			loop while valid="c"
+				
+	end sub 
+
+	sub inputUser(byref grid(,) as integer)
+		Dim row as integer
+		Dim column as integer
+		Dim proceed as boolean 
+		do
+			Console.Writeline()
+			Console.Writeline()
+			Console.Writeline("Enter the Row you wish to place your slot")
+			row=Console.Readline()
+			Console.Writeline("Enter the Column you wish to place your slot")
+			column=Console.Readline()
+			proceed=true
+			
+			if (grid(row,column)=1 or grid(row,column)=2) then
+				proceed=false
+				Console.Writeline("Slot Taken, Enter a new one")
+			end if
+			
+		loop while not proceed
+			
+			grid(row,column)=1
+			
+			for row1=0 to 2
+				Console.Writeline()
+				for columb1=0 to 2
+					Console.Write(grid(row1,columb1))
+				next	
+			next
+	
+	end sub
+	
+	sub inputComputer(byref grid(,) as integer)
+		Dim row as integer
+		Dim column as integer
+		Dim proceed as boolean 
+		Dim high As Integer = 2
+		Dim low As Integer = 0
+		Randomize()
+	
+		Console.Writeline()
+		Console.Writeline()
+		Console.Writeline("Now its the computers turn")
+		 do
+			proceed=true
+			row=Int((high - low + 1) * Rnd()) + low
+			column=Int((high - low + 1) * Rnd()) + low
+			
+			if (grid(row,column)=1 or grid(row,column)=2) then
+				proceed=false
+			end if
+			
+		loop while not proceed
+			
+		grid(row,column)=2
+			
+			for row1=0 to 2
+				Console.Writeline()
+				for columb1=0 to 2
+					Console.Write(grid(row1,columb1))
+				next	
+			next
+			Console.Writeline()
+			Console.Writeline()
+	end sub
+	
+	function validate(byref grid( , ) as integer, byval valid as string)as string
+		for i = 0 to 2
+			if grid (i,0) = 1 and  grid (i,1) = 1 and grid (i,2) = 1 then
+				valid = "a"
+			elseif grid(0,i)=1 and grid(1,i)=1 and grid(2,i)=1 then
+				valid = "a"
+			end if
+		next i
+		for i = 0 to 2
+			if grid (0,0) = 1 and  grid (1,1) = 1 and grid (2,2) = 1 then
+				valid = "a"
+			elseif grid(0,2)=1 and grid(1,1)=1 and grid(2,0)=1 then
+				valid = "a"
+			end if
+		next i
+		if valid = "a" then 
+			console.writeLine("Congratulations you won!")
+		end if 
+		for i = 0 to 2
+			if grid (i,0) = 2 and  grid (i,1) = 2 and grid (i,2) = 2 then
+				valid = "b"
+			elseif grid(0,i)=2 and grid(1,i)=2 and grid(2,i)=2 then
+				valid = "b"
+			end if
+		next i
+		for i = 0 to 2
+			if grid (0,0) = 2 and grid (1,1)= 2 and grid (2,2)= 2 then
+				valid = "b"
+			elseif grid(0,2)=2 and grid(1,1)=2 and grid(2,0)=2 then
+				valid = "b"
+			end if
+		next i
+		if valid = "b" then 
+			console.writeLine("Unfortunately the Computer won!")
+		end if 
+		return valid
+	end function
+	
+end module 
+
+		
+	
+	

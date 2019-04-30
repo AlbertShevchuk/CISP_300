@@ -1,0 +1,18 @@
+Module Module1
+	Sub Main()
+	
+		Dim deposit as Integer
+		Dim balance as Integer
+	
+		Console.Writeline("Enter 1st day amount: ")
+		deposit=Console.Readline() 
+		balance=deposit 
+		Console.Writeline("Enter 2st day amount: ")
+		deposit=Console.Readline()
+		balance=deposit+balance 
+		Console.Writeline("Enter 3st day amount: ")
+		deposit=Console.Readline()
+		balance=deposit+balance
+		Console.Writeline("balance: " & balance) 
+	End Sub
+End Module

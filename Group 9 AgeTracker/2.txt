@@ -1,0 +1,109 @@
+Module Module1
+	
+	sub main()
+
+		Dim ageList(10) as integer 
+		Dim ageCategory(4) as integer 
+		
+		populateArray(ageList)
+		countPerCategory(ageCategory,ageList)
+		average(ageList)
+		oldYoung(ageList)
+		displayOdd(ageList)
+		Console.WriteLine("Press any key to Exit")
+		Console.ReadKey()
+		
+	end sub 
+	
+	sub populateArray(byref ageList() as integer)
+		
+		Dim age as integer 
+	
+		For employee = 0 To 10
+			If not employee=5
+				console.writeline("How many old are you?")
+				age = console.readline()
+				ageList(employee)=age
+			end if 
+			
+        Next
+
+	end sub 
+	
+	sub countPerCategory(byref ageCategory() as integer,byref ageList() as integer) 
+		For employee = 0 To 10
+			If not employee=5
+				Select Case ageList(employee)
+					Case 8 to 17
+						ageCategory(0)+=1				
+					Case 18 to 30
+						ageCategory(1)+=1	
+					Case 31 to 45
+						ageCategory(2)+=1	
+					Case 46 to 64
+						ageCategory(3)+=1	
+					Case>=65
+						ageCategory(4)+=1	
+				End select 	
+			end if 
+        Next
+		console.writeline()
+		console.writeline(ageCategory(0) & " People in ages 8 threw 17 group")
+		console.writeline(ageCategory(1) & " People in ages 18 threw 30 group")
+		console.writeline(ageCategory(2) & " People in ages 31 threw 45 group")
+		console.writeline(ageCategory(3) & " People in ages 46 threw 64 group")
+		console.writeline(ageCategory(4) & " People in ages 65 and older group")
+	end sub 
+	
+
+	
+	sub  average(byref ageList() as integer)
+	
+		For employee = 0 To 10
+				If not employee=5
+					ageList(5)+=ageList(employee)
+				end if 
+		Next
+		ageList(5)=ageList(5)/10		
+		console.writeline()
+		console.writeline("The Average Age of all 10 employee's is: " & ageList(5))
+	end sub 
+	
+	sub oldYoung(byref ageList() as integer)
+		dim oldTraker as integer
+		dim yungTraker as integer
+		
+		oldTraker=ageList(0)
+		yungTraker=ageList(0)
+		For employee = 0 To 10
+				If not employee=5
+					If oldTraker>ageList(employee)
+						oldTraker=ageList(employee)
+					end if
+					If yungTraker<ageList(employee)
+						yungTraker=ageList(employee)
+					end if
+				end if
+		Next
+		console.writeline()
+		console.writeline("The youngest employee is: " & oldTraker)
+		console.writeline("The oldest employee is: " & yungTraker)
+		console.writeline()
+	end sub
+	
+	sub displayOdd(byref ageList() as integer)
+		For employee = 0 To 10 
+				If not employee=5
+					if employee mod 2=1
+						console.writeline("The age of employee: " & employee & " is " & ageList(employee))
+					end if
+				end if
+		Next
+		 
+	end sub
+	
+		
+end module 
+		
+	
+	

@@ -1,0 +1,39 @@
+Module Module1
+
+    Sub Main()
+		dim total as integer
+	
+		console.writeline("Hey f**k face! wanna do some multiplication, the LONG way?" )
+		total=mult()
+		console.writeline("Your answer is " &total & " f**k face!" )
+		Console.WriteLine("Press any key to dip out")
+        Console.ReadKey()
+
+    End Sub
+	
+	function mult() as integer
+			dim value1 as integer 
+			dim value2 as integer
+			dim total as integer
+		do
+			console.writeline("Enter the first numeric (integer) f**k face!" )
+			value1=console.readline()
+			console.writeline("Enter the second numeric (integer) f**k face!" )
+			value2=console.readline()
+		
+			if value1<0 or value2<0
+				console.writeline("F**ker! No negative numbers you dumb b**ch" )
+			end if
+			if value1=0 or value2=0
+				total=0
+			end if	
+		
+		loop until (value1>=0 and value2>=0)
+	
+		for Count=1 to value2
+		total=total+value1
+		next 
+		return total 
+	end function
+	
+End Module

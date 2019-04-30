@@ -1,0 +1,92 @@
+Module Module1
+	sub main()
+		
+		Dim number as integer
+		Dim pRate as decimal 
+		Dim hWorked as decimal 
+		Dim pWithheld as decimal 
+		Dim gPay as decimal
+		Dim oHours as decimal
+		Dim nPay as decimal
+		Dim wAmount as decimal
+		REM Variables used for part one
+		
+		Dim lArea as decimal
+		Dim wArea as decimal
+		Dim dArea as decimal
+		Dim tWood as string
+		Dim xDrawer as decimal
+		Dim pRice=200
+		REM Variables used for part two
+		
+		Dim eLoop as Boolean
+		REM Loop Thang 
+		
+		do		
+			eLoop=True 
+			console.writeline("Enter 1 for Employee, 2 for Carpenter and 3 to Quit " )
+			number=console.readline()
+			REM My Loop contains either a true or a false statement, true to terminate loop, and false to keep looping
+			REM Case selection is pretty straight forward 
+			
+			Select Case number
+				Case 1
+					console.writeline("Enter Hourly Pay Rate " )
+					pRate=console.readline()
+					console.writeline("Enter Number of Hours Worked This Pay Period " )
+					hWorked=console.readline()
+					console.writeline("Enter the Percentage of Gross Salary that is Withheld as a Decimal " )
+					pWithheld=console.readline()
+					REM 3 values are stored for this part, below the if statement determines overtime hour pay plus regular pay times 40
+					
+					if hWorked>40 then
+						oHours=hWorked-40
+						gPay=(oHours*1.5*pRate)+(40*pRate)
+					else
+						gPay=pRate*hWorked
+					end if
+					
+					REM Lastly net pay is determined by subtracting the amount withheld by taxes from the original amount 
+					wAmount=gPay*pWithheld
+					nPay=gPay-wAmount
+					console.writeline("Total Net Pay after Taxes: " &nPay )
+					eLoop=False REM loop continues since statement is considered "not eLoop" 
+				Case 2
+					console.writeline("Enter Desk Length in Inches")
+					lArea=console.readline()
+					console.writeline("Enter Desk Width in Inches")
+					wArea=console.readline()
+					dArea=lArea*wArea
+					console.writeline("Enter the type of wood (in small caps)")
+					tWood=console.readline()
+					console.writeline("Enter the amount of drawers")
+					xDrawer=console.readline()
+					
+					REM In the second part a bunch more values are stored to determine different prices 
+					REM If statements validate to see if in fact the users values qualify conditions and adds on to pRice
+					
+					if tWood="mahogany" then
+						pRice=pRice+150
+					else
+						if tWood="oak" then
+							pRice=pRice+125
+						end if
+					end if
+					
+					if dArea>750 then
+						pRice=pRice+50
+					end if
+					
+					If xDrawer>3 then
+						pRice=pRice+30
+					end if
+					
+					console.writeline("Your " & tWood & " Desk with " & xDrawer & " Drawers will cost " & pRice & " US Dollars with a surface of "  & lArea & " as length by " & wArea & " as width")
+					eLoop=False REM loop continues since statement is considered "not eLoop" 
+				Case 3
+					console.writeline("Goodbye")
+					eLoop=True REM loop terminates because statement fits the loops parameters
+				End select
+		loop while not eLoop  
+	end sub
+end module
